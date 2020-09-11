@@ -21,6 +21,14 @@ namespace DozyGrove
         public Vector2 windowSize { get { return new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); } }
         public static Vector2 zoomedScreenSize { get { return screenSize / camera.Zoom; } }
         public static Vector2 topLeft { get { return Vector2.Transform(Vector2.Zero, camera.GetInverseViewMatrix()); } }
+        public static Vector2 mousePosition 
+        { 
+            get 
+            {
+                Point _mousePos = Mouse.GetState().Position;
+                return Vector2.Transform(new Vector2(_mousePos.X, _mousePos.Y), camera.GetInverseViewMatrix()); 
+            } 
+        }
 
         public Game1()
         {
@@ -63,8 +71,10 @@ namespace DozyGrove
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, transformMatrix: camera.GetViewMatrix()); GraphicsDevice.Clear(backgroundColor);
             locationManager.Draw(spriteBatch);
 
+            // Temp display renders
             spriteBatch.DrawRectangle(new Rectangle((int)topLeft.X, (int)topLeft.Y, 10, 10), Color.Red);
             spriteBatch.DrawRectangle(new Rectangle(0, 0, 300, 210), Color.Green);
+            spriteBatch.DrawPoint(mousePosition, Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);
