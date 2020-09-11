@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DozyGrove.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace DozyGrove
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Color backgroundColor;
-        private Dictionary<string, Texture2D> textures;
+        public static Dictionary<string, Texture2D> textures;
+
+        private LocationManager locationManager;
 
         public Game1()
         {
@@ -22,6 +25,7 @@ namespace DozyGrove
         {
             backgroundColor = new Color(48, 48, 61);
             base.Initialize();
+
         }
 
         protected override void LoadContent()
@@ -31,6 +35,8 @@ namespace DozyGrove
             {
                 { "barriers", Content.Load<Texture2D>("barriers") },
             };
+
+            locationManager = new LocationManager();
         }
 
         protected override void UnloadContent()
@@ -40,12 +46,16 @@ namespace DozyGrove
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
+            locationManager.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
             GraphicsDevice.Clear(backgroundColor);
+            locationManager.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
