@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using System;
 using System.Collections.Generic;
 
 namespace DozyGrove
@@ -12,8 +14,13 @@ namespace DozyGrove
         private SpriteBatch spriteBatch;
         private Color backgroundColor;
         public static Dictionary<string, Texture2D> textures;
-
+        public static Camera2D camera;
         private LocationManager locationManager;
+
+        public static Vector2 screenSize { get { return new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height); } }
+        public Vector2 windowSize { get { return new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); } }
+        public static Vector2 zoomedScreenSize { get { return screenSize / camera.Zoom; } }
+        public static Vector2 topLeft { get { return Vector2.Transform(Vector2.Zero, camera.GetInverseViewMatrix()); } }
 
         public Game1()
         {
@@ -24,6 +31,7 @@ namespace DozyGrove
         protected override void Initialize()
         {
             backgroundColor = new Color(48, 48, 61);
+            camera = new Camera2D(GraphicsDevice) { Zoom = 2, Position = (new Vector2(300, 210) - windowSize) / 2f };
             base.Initialize();
 
         }
@@ -52,9 +60,12 @@ namespace DozyGrove
 
         protected override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
-            GraphicsDevice.Clear(backgroundColor);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, transformMatrix: camera.GetViewMatrix()); GraphicsDevice.Clear(backgroundColor);
             locationManager.Draw(spriteBatch);
+
+            spriteBatch.DrawRectangle(new Rectangle((int)topLeft.X, (int)topLeft.Y, 10, 10), Color.Red);
+            spriteBatch.DrawRectangle(new Rectangle(0, 0, 300, 210), Color.Green);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

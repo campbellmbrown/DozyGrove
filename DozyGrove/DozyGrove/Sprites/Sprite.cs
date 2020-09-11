@@ -13,7 +13,6 @@ namespace DozyGrove.Sprites
         // public Animation animation;
         public Texture2D texture;
         public Rectangle textureRectangle;
-        protected Vector2 center = new Vector2(5);
 
         public Sprite(Texture2D texture, Rectangle textureRectangle)
         {
@@ -27,7 +26,7 @@ namespace DozyGrove.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(texture, position, textureRectangle, Color.White, angle, center, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, textureRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
     }
 }

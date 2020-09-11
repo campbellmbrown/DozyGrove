@@ -33,7 +33,7 @@ namespace DozyGrove.Locations
             {
                 for (int j = 0; j < tileList.GetLength(0); ++j) // columns
                 {
-                    Tile tile = new Tile(new Vector2(50 + i * Tile.tileSize, 50 + j * Tile.tileSize));
+                    Tile tile = new Tile(new Vector2(i * Tile.tileSize, j * Tile.tileSize));
                     tile.SetSprite(tileAssignments[tileList[j, i]]);
                     tiles.Add(tile);
                 }
