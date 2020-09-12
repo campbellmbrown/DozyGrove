@@ -14,7 +14,7 @@ namespace DozyGrove.Locations
 {
     public class Location
     {
-        protected Dictionary<int, Sprite> tileAssignments = new Dictionary<int, Sprite>()
+        protected Dictionary<int, Sprite> barrierTileAssignments = new Dictionary<int, Sprite>()
         {
             { 0, null },
             { 1, new Barrier(new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Dark green tree 1
@@ -41,6 +41,9 @@ namespace DozyGrove.Locations
             { 22, new Barrier(new Rectangle(1 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Rock 2
             { 23, new Barrier(new Rectangle(2 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Snowy rock 1
             { 24, new Barrier(new Rectangle(3 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Snowy rock 2
+            { 25, new Barrier(new Rectangle(4 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Fallen log
+            { 26, new Barrier(new Rectangle(4 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Tree stump 1
+            { 27, new Barrier(new Rectangle(4 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, // Tree stump 2
         };
 
         public List<Tile> tiles;
@@ -54,7 +57,7 @@ namespace DozyGrove.Locations
                 for (int j = 0; j < tileList.GetLength(0); ++j) // columns
                 {
                     Tile tile = new Tile(new Vector2(i * Tile.tileSize, j * Tile.tileSize));
-                    tile.SetSprite(tileAssignments[tileList[j, i]]);
+                    tile.SetSprite(barrierTileAssignments[tileList[j, i]]);
                     tiles.Add(tile);
                 }
             }

@@ -34,12 +34,18 @@ namespace DozyGrove
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = (int)screenSize.X;
+            graphics.PreferredBackBufferHeight = (int)screenSize.Y;
+            graphics.IsFullScreen = false;
         }
 
         protected override void Initialize()
         {
+            IsMouseVisible = false;
+            IsFixedTimeStep = true;
+            graphics.SynchronizeWithVerticalRetrace = true;
             backgroundColor = new Color(48, 48, 61);
-            camera = new Camera2D(GraphicsDevice) { Zoom = 2, Position = (new Vector2(300, 210) - windowSize) / 2f };
+            camera = new Camera2D(GraphicsDevice) { Zoom = 3, Position = (new Vector2(300, 210) - windowSize) / 2f };
             base.Initialize();
 
         }
@@ -72,8 +78,8 @@ namespace DozyGrove
             locationManager.Draw(spriteBatch);
 
             // Temp display renders
-            spriteBatch.DrawRectangle(new Rectangle((int)topLeft.X, (int)topLeft.Y, 10, 10), Color.Red);
-            spriteBatch.DrawRectangle(new Rectangle(0, 0, 300, 210), Color.Green);
+            //spriteBatch.DrawRectangle(new Rectangle((int)topLeft.X, (int)topLeft.Y, 10, 10), Color.Red);
+            //spriteBatch.DrawRectangle(new Rectangle(0, 0, 300, 210), Color.Green);
             spriteBatch.DrawPoint(mousePosition, Color.White);
 
             spriteBatch.End();
