@@ -1,6 +1,5 @@
 % Setup
 clear;clc;
-tile_size = 10;
 
 % Reading the image
 img = imread('grove_patch.png');
@@ -11,7 +10,7 @@ idx = 1;
 for i = 1:size(img, 1)
     for j = 1:size(img, 2)
         if img(i, j) == 1
-            positions(idx, :) = [(j-1)*tile_size, (i-1)*tile_size];
+            positions(idx, :) = [(j-1), (i-1)];
             idx = idx + 1;
         end
     end

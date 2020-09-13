@@ -16,9 +16,11 @@ namespace DozyGrove.Locations
     {
         public string name { get; set; }
         public int id { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
         public List<BarrierModel> barriers { get; set; }
         public List<DecorationModel> decorations { get; set; }
-        public List<Tile> tiles { get; set; }
+        public Tile[,] tiles { get; set; }
 
         public class BarrierModel : JSONSpriteModel { }
         public class DecorationModel : JSONSpriteModel { }
@@ -71,14 +73,14 @@ namespace DozyGrove.Locations
 
         public void AddSprites()
         {
-            tiles = new List<Tile>();
+            tiles = new Tile[100, 100];
             foreach (var barrier in barriers) // Add barriers
             {
                 foreach (var position in barrier.positions)
                 {
-                    Tile tile = new Tile(new Vector2(position[0], position[1]));
+                    Tile tile = new Tile(new Vector2(position[0] * Tile.tileSize, position[1] * Tile.tileSize));
                     tile.SetSprite(barrierTileAssignments[barrier.type]);
-                    tiles.Add(tile);
+                    tiles[position[0], position[1]] = tile;
                 }
             }
             // Add decorations
@@ -86,23 +88,24 @@ namespace DozyGrove.Locations
             {
                 foreach (var position in decoration.positions)
                 {
-                    Tile tile = new Tile(new Vector2(position[0], position[1]));
+                    Tile tile = new Tile(new Vector2(position[0] * Tile.tileSize, position[1] * Tile.tileSize));
                     tile.SetSprite(decorationTileAssignments[decoration.type]);
-                    tiles.Add(tile);
+                    tiles[position[0], position[1]] = tile;
                 }
             }
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            foreach (var tile in tiles)
-                tile.Update(gameTime);
+            //foreach (var tile in tiles)
+            //    tile.Update(gameTime);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             foreach (var tile in tiles)
-                tile.Draw(spriteBatch);
+                if (tile != null)
+                    tile.Draw(spriteBatch);
         }
     }
 }
