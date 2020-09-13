@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace DozyGrove.Sprites
 {
-    public class BarrierSprite : Sprite
+    public class Barrier : Sprite
     {
-        public BarrierSprite(Rectangle textureRectangle) : base(Game1.textures["barriers"], textureRectangle)
+        public Barrier(Rectangle textureRectangle) : base(Game1.textures["barriers"], textureRectangle)
         {
-
         }
     }
 }

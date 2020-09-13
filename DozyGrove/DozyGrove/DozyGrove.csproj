@@ -47,7 +47,8 @@
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\BarrierSprite.cs" />
+    <Compile Include="Sprites\Barrier.cs" />
+    <Compile Include="Sprites\Decoration.cs" />
     <Compile Include="Sprites\Sprite.cs" />
   </ItemGroup>
   <ItemGroup>

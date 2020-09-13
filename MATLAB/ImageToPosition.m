@@ -3,14 +3,14 @@ clear;clc;
 tile_size = 10;
 
 % Reading the image
-img = imread('grove_dark_green_trees_1.png');
+img = imread('grove_patch.png');
 
 idx = 1;
 
 % Generating positions of all black pixels in the image
 for i = 1:size(img, 1)
     for j = 1:size(img, 2)
-        if img(i, j) == 0
+        if img(i, j) == 1
             positions(idx, :) = [(j-1)*tile_size, (i-1)*tile_size];
             idx = idx + 1;
         end

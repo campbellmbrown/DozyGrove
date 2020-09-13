@@ -56,6 +56,7 @@ namespace DozyGrove
             textures = new Dictionary<string, Texture2D>()
             {
                 { "barriers", Content.Load<Texture2D>("barriers") },
+                { "decorations", Content.Load<Texture2D>("decorations") },
             };
 
             locationManager = new LocationManager();
