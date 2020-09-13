@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DozyGrove.Sprites
 {
-    public class Barrier : Sprite
+    public class BarrierSprite : Sprite
     {
-        public Barrier(Rectangle textureRectangle) : base(Game1.textures["barriers"], textureRectangle)
+        public BarrierSprite(Rectangle textureRectangle) : base(Game1.textures["barriers"], textureRectangle)
         {
 
         }

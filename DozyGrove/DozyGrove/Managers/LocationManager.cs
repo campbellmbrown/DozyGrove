@@ -1,6 +1,7 @@
 ﻿using DozyGrove.Locations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,16 @@ namespace DozyGrove.Managers
 {
     public class LocationManager
     {
-        protected List<Location> locations;
+        protected List<Location> locations { get; set; }
 
         public LocationManager()
         {
             locations = new List<Location>();
-            locations.Add(new TheGrove());
+
+            string stringToDeserialise = System.IO.File.ReadAllText(@"D:\Git Projects\DozyGrove\DozyGrove\DozyGrove\Locations\grove.txt");
+            locations.Add(DeserialiseJSON(stringToDeserialise));
+            foreach (var location in locations)
+                location.AddSprites();
         }
 
         public void Update(GameTime gameTime)
@@ -31,6 +36,12 @@ namespace DozyGrove.Managers
             // Needs to change to selected location
             foreach (var location in locations)
                 location.Draw(spriteBatch);
+        }
+
+        private Location DeserialiseJSON(string strJSON)
+        {
+            Location location = JsonConvert.DeserializeObject<Location>(strJSON);
+            return location;
         }
     }
 }
