@@ -19,7 +19,7 @@ namespace DozyGrove.Managers
             locations = new List<Location>();
 
             // TODO: Change to find file based on base directory
-            string stringToDeserialise = System.IO.File.ReadAllText(@"D:\Git Projects\DozyGrove\DozyGrove\DozyGrove\Locations\grove.txt");
+            string stringToDeserialise = System.IO.File.ReadAllText(@"D:\Git Projects\DozyGrove\DozyGrove\Locations\grove.txt");
             locations.Add(DeserialiseJSON(stringToDeserialise));
             foreach (var location in locations)
                 location.AddSprites();
