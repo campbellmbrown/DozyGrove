@@ -22,7 +22,10 @@ namespace DozyGrove.Managers
             string stringToDeserialise = System.IO.File.ReadAllText(@"D:\Git Projects\DozyGrove\DozyGrove\Locations\grove.txt");
             locations.Add(DeserialiseJSON(stringToDeserialise));
             foreach (var location in locations)
+            {
+                location.FormGrid();
                 location.AddSprites();
+            }
         }
 
         public void Update(GameTime gameTime)

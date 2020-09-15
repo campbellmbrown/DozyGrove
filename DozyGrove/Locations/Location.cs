@@ -18,6 +18,7 @@ namespace DozyGrove.Locations
         public int id { get; set; }
         public int height { get; set; }
         public int width { get; set; }
+        public int[] startingPlayerIdx { get; set; }
         public List<BarrierModel> barriers { get; set; }
         public List<DecorationModel> decorations { get; set; }
         public Tile[,] tiles { get; set; }
@@ -62,7 +63,6 @@ namespace DozyGrove.Locations
             { "tree_stump_1", new Barrier(new Rectangle(4 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
             { "tree_stump_2", new Barrier(new Rectangle(4 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, 
         };
-
         // Decoration dictionary
         protected Dictionary<string, Sprite> decorationTileAssignments = new Dictionary<string, Sprite>()
         {
@@ -71,16 +71,26 @@ namespace DozyGrove.Locations
             { "small_grass_2", new Decoration(new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
         };
 
+        public void FormGrid()
+        {
+            tiles = new Tile[height, width];
+            for (int i = 0; i < width; ++i)
+            {
+                for (int j = 0; j < height; ++j)
+                {
+                    tiles[j, i] = new Tile(new Vector2(i * Tile.tileSize, j * Tile.tileSize));
+                }
+            }
+        }
+
         public void AddSprites()
         {
-            tiles = new Tile[100, 100];
             foreach (var barrier in barriers) // Add barriers
             {
                 foreach (var position in barrier.positions)
                 {
-                    Tile tile = new Tile(new Vector2(position[0] * Tile.tileSize, position[1] * Tile.tileSize));
-                    tile.SetSprite(barrierTileAssignments[barrier.type]);
-                    tiles[position[0], position[1]] = tile;
+                    // Goes 1 first, due to the JSON format having the index corresponding to the x coordinate (the column) first
+                    tiles[position[1], position[0]].SetSprite(barrierTileAssignments[barrier.type]);
                 }
             }
             // Add decorations
@@ -88,11 +98,10 @@ namespace DozyGrove.Locations
             {
                 foreach (var position in decoration.positions)
                 {
-                    Tile tile = new Tile(new Vector2(position[0] * Tile.tileSize, position[1] * Tile.tileSize));
-                    tile.SetSprite(decorationTileAssignments[decoration.type]);
-                    tiles[position[0], position[1]] = tile;
+                    tiles[position[1], position[0]].SetSprite(decorationTileAssignments[decoration.type]);
                 }
             }
+            tiles[startingPlayerIdx[1], startingPlayerIdx[0]].entity = new Player();
         }
 
         public virtual void Update(GameTime gameTime)

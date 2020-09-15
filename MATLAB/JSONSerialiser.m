@@ -16,6 +16,7 @@ JSONstr = strcat(JSONstr, '"locationName":"The Grove",');
 JSONstr = strcat(JSONstr, '"height":21,');
 JSONstr = strcat(JSONstr, '"width":30,');
 JSONstr = strcat(JSONstr, '"id":0,');
+JSONstr = strcat(JSONstr, '"startingPlayerIdx":[15,7],');
 JSONstr = strcat(JSONstr, GetTileFormatted('barriers', barrierFilesToRead, prefix, fileType));
 JSONstr = strcat(JSONstr, ',');
 JSONstr = strcat(JSONstr, GetTileFormatted('decorations', decorationFilesToRead, prefix, fileType));
