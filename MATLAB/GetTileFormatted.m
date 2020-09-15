@@ -18,8 +18,8 @@ for b = 1:length(filesToRead)
             if img(i, j) == 1
                 positions(idx, :) = [j - 1, i - 1];
                 % Adding each position
-                JSONstr = strcat(JSONstr, '[', num2str(j - 1), ...
-                    ',', num2str(i - 1), '],');
+                JSONstr = strcat(JSONstr, '[', num2str(i - 1), ...
+                    ',', num2str(j - 1), '],');
                 idx = idx + 1;
             end
         end

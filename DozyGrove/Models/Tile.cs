@@ -12,7 +12,7 @@ namespace DozyGrove.Models
 {
     public class Tile
     {
-        protected Sprite sprite;
+        public Sprite sprite;
         public Sprite entity;
         protected Vector2 position;
         protected bool hasSprite { get { return sprite != null; } }
@@ -22,11 +22,6 @@ namespace DozyGrove.Models
         public Tile(Vector2 position)
         {
             this.position = position;
-        }
-
-        public void SetSprite(Sprite sprite)
-        {
-            this.sprite = sprite;
         }
 
         public void Update(GameTime gameTime)

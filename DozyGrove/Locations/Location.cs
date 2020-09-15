@@ -19,6 +19,7 @@ namespace DozyGrove.Locations
         public int height { get; set; }
         public int width { get; set; }
         public int[] startingPlayerIdx { get; set; }
+        public int[] playerIdx { get; set; }
         public List<BarrierModel> barriers { get; set; }
         public List<DecorationModel> decorations { get; set; }
         public Tile[,] tiles { get; set; }
@@ -89,8 +90,7 @@ namespace DozyGrove.Locations
             {
                 foreach (var position in barrier.positions)
                 {
-                    // Goes 1 first, due to the JSON format having the index corresponding to the x coordinate (the column) first
-                    tiles[position[1], position[0]].SetSprite(barrierTileAssignments[barrier.type]);
+                    tiles[position[0], position[1]].sprite = barrierTileAssignments[barrier.type];
                 }
             }
             // Add decorations
@@ -98,10 +98,11 @@ namespace DozyGrove.Locations
             {
                 foreach (var position in decoration.positions)
                 {
-                    tiles[position[1], position[0]].SetSprite(decorationTileAssignments[decoration.type]);
+                    tiles[position[0], position[1]].sprite = decorationTileAssignments[decoration.type];
                 }
             }
-            tiles[startingPlayerIdx[1], startingPlayerIdx[0]].entity = new Player();
+            tiles[startingPlayerIdx[0], startingPlayerIdx[1]].entity = new Player();
+            playerIdx = startingPlayerIdx;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -113,8 +114,33 @@ namespace DozyGrove.Locations
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             foreach (var tile in tiles)
-                if (tile != null)
-                    tile.Draw(spriteBatch);
+                tile.Draw(spriteBatch);
+        }
+
+        public virtual void MovePlayerUp() { MovePlayer(-1, 0); }
+        public virtual void MovePlayerDown() { MovePlayer(1, 0); }
+        public virtual void MovePlayerLeft() { MovePlayer(0, -1); }
+        public virtual void MovePlayerRight() { MovePlayer(0, 1); }
+
+        public void MovePlayer(int vertical, int horizontal)
+        {
+            int newPlayerRow = playerIdx[0] + vertical;
+            int newPlayerCol = playerIdx[1] + horizontal;
+            // If the new player position is not out of bounds
+            if ((newPlayerRow >= 0) && (newPlayerRow < height) && (newPlayerCol >= 0) && (newPlayerCol < width))
+            {
+                if (!(tiles[newPlayerRow, newPlayerCol].sprite is Barrier)) {
+                    tiles[newPlayerRow, newPlayerCol].entity = tiles[playerIdx[0], playerIdx[1]].entity;
+                    tiles[playerIdx[0], playerIdx[1]].entity = null;
+                    playerIdx[0] = newPlayerRow;
+                    playerIdx[1] = newPlayerCol;
+                }
+            }
+        }
+
+        public static int[] Add2Vectors(int[] a, int[] b)
+        {
+            return (a.Zip(b, (x, y) => x + y)).ToArray();
         }
     }
 }

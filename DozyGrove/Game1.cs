@@ -15,7 +15,8 @@ namespace DozyGrove
         private Color backgroundColor;
         public static Dictionary<string, Texture2D> textures;
         public static Camera2D camera;
-        private LocationManager locationManager;
+        public static LocationManager locationManager;
+        public static InputManager inputManager;
 
         public static Vector2 screenSize { get { return new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height); } }
         public Vector2 windowSize { get { return new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); } }
@@ -61,6 +62,7 @@ namespace DozyGrove
             };
 
             locationManager = new LocationManager();
+            inputManager = new InputManager();
         }
 
         protected override void UnloadContent()
@@ -71,6 +73,7 @@ namespace DozyGrove
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
             locationManager.Update(gameTime);
+            inputManager.Update(gameTime);
             base.Update(gameTime);
         }
 

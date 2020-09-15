@@ -47,5 +47,10 @@ namespace DozyGrove.Managers
             Location location = JsonConvert.DeserializeObject<Location>(strJSON);
             return location;
         }
+
+        public void MoveUp() { locations[0].MovePlayerUp(); }
+        public void MoveDown() { locations[0].MovePlayerDown(); }
+        public void MoveLeft() { locations[0].MovePlayerLeft(); }
+        public void MoveRight() { locations[0].MovePlayerRight(); }
     }
 }
