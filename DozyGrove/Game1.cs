@@ -82,8 +82,8 @@ namespace DozyGrove
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
-            locationManager.Update(gameTime);
             inputManager.Update(gameTime);
+            locationManager.Update(gameTime);
             base.Update(gameTime);
         }
 

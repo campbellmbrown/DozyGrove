@@ -120,6 +120,7 @@ namespace DozyGrove.Locations
         public bool MovePlayer(int vertical, int horizontal)
         {
             bool moved = false;
+            Vector2 movementDirection = Vector2.Zero;
             int newPlayerRow = playerIdx[0] + vertical;
             int newPlayerCol = playerIdx[1] + horizontal;
             // Vertical
@@ -129,6 +130,7 @@ namespace DozyGrove.Locations
                 if (!(tiles[newPlayerRow, playerIdx[1]].sprite is Barrier))
                 {
                     moved = true;
+                    movementDirection.Y += vertical;
                     tiles[newPlayerRow, playerIdx[1]].entity = tiles[playerIdx[0], playerIdx[1]].entity;
                     tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[0] = newPlayerRow;
@@ -141,11 +143,16 @@ namespace DozyGrove.Locations
                 if (!(tiles[playerIdx[0], newPlayerCol].sprite is Barrier))
                 {
                     moved = true;
+                    movementDirection.X += horizontal;
                     tiles[playerIdx[0], newPlayerCol].entity = tiles[playerIdx[0], playerIdx[1]].entity;
                     tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[1] = newPlayerCol;
                 }
             }
+
+            if (moved)
+                tiles[playerIdx[0], playerIdx[1]].EntitySmoothTransition(movementDirection, 0.15f);
+            
             return moved;
         }
     }

@@ -28,6 +28,8 @@ namespace DozyGrove.Models
         {
             if (hasSprite)
                 sprite.Update(gameTime);
+            if (hasEntity)
+                entity.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -36,6 +38,12 @@ namespace DozyGrove.Models
                 sprite.Draw(spriteBatch, position);
             if (hasEntity)
                 entity.Draw(spriteBatch, position);
+        }
+
+        public void EntitySmoothTransition(Vector2 direction, float duration)
+        {
+            if (hasEntity)
+                entity.SmoothTransition(direction, duration);
         }
     }
 }

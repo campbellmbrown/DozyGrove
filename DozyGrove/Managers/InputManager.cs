@@ -12,19 +12,11 @@ namespace DozyGrove.Managers
     {
         private float movementDelay { get; set; }
         private float currentMovementDelay { get; set; }
-        private bool holdingDownUp { get; set; }
-        private bool holdingDownDown { get; set; }
-        private bool holdingDownLeft { get; set; }
-        private bool holdingDownRight { get; set; }
 
         public InputManager()
         {
             movementDelay = 0.2f;
             currentMovementDelay = 0f;
-            holdingDownUp = false;
-            holdingDownDown = false;
-            holdingDownLeft = false;
-            holdingDownRight = false;
         }
 
         public void Update(GameTime gameTime)
@@ -37,50 +29,6 @@ namespace DozyGrove.Managers
 
         private void CheckSingleKeyPress(KeyboardState keyboardState)
         {
-        //    if (keyboardState.IsKeyDown(Keys.W))
-        //    {
-        //        if (!holdingDownUp)
-        //        {
-        //            Game1.sounds["player_move"].Play();
-        //            Game1.locationManager.MoveUp();
-        //            ResetMovementDelays();
-        //        }
-        //        holdingDownUp = true;
-        //    }
-        //    else holdingDownUp = false;
-
-        //    if (keyboardState.IsKeyDown(Keys.S))
-        //    {
-        //        if (!holdingDownDown)
-        //        {
-        //            Game1.locationManager.MoveDown();
-        //            ResetMovementDelays();
-        //        }
-        //        holdingDownDown = true;
-        //    }
-        //    else holdingDownDown = false;
-
-        //    if (keyboardState.IsKeyDown(Keys.A))
-        //    {
-        //        if (!holdingDownLeft)
-        //        {
-        //            Game1.locationManager.MoveLeft();
-        //            ResetMovementDelays();
-        //        }
-        //        holdingDownLeft = true;
-        //    }
-        //    else holdingDownLeft = false;
-
-        //    if (keyboardState.IsKeyDown(Keys.D))
-        //    {
-        //        if (!holdingDownRight)
-        //        {
-        //            Game1.locationManager.MoveRight();
-        //            ResetMovementDelays();
-        //        }
-        //        holdingDownRight = true;
-        //    }
-        //    else holdingDownRight = false;
         }
 
         private void CheckHeldKeyPress(KeyboardState keyboardState, float t)
