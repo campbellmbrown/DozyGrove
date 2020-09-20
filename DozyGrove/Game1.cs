@@ -69,6 +69,7 @@ namespace DozyGrove
             sounds = new Dictionary<string, SoundEffect>()
             {
                 { "player_move", Content.Load<SoundEffect>("Sounds/player_move") },
+                { "player_block", Content.Load<SoundEffect>("Sounds/player_block") },
             };
 
             locationManager = new LocationManager();

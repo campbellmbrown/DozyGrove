@@ -49,6 +49,12 @@
 /processorParam:TextureFormat=Color
 /build:player.png
 
+#begin Sounds/player_block.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/player_block.wav
+
 #begin Sounds/player_move.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

@@ -51,9 +51,9 @@ namespace DozyGrove.Managers
         public void MovePlayer(int vertical, int horizontal) 
         {
             if (locations[0].MovePlayer(vertical, horizontal))
-            {
                 Game1.sounds["player_move"].Play();
-            }
+            else
+                Game1.sounds["player_block"].Play();
         }
     }
 }
