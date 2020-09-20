@@ -1,4 +1,4 @@
-using DozyGrove.Models;
+﻿using DozyGrove.Models;
 using DozyGrove.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -114,7 +114,9 @@ namespace DozyGrove.Locations
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             foreach (var tile in tiles)
-                tile.Draw(spriteBatch);
+                tile.DrawSprite(spriteBatch);
+            foreach (var tile in tiles)
+                tile.DrawEntity(spriteBatch);
         }
 
         public bool MovePlayer(int vertical, int horizontal)

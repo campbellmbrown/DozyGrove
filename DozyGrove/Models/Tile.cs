@@ -32,10 +32,14 @@ namespace DozyGrove.Models
                 entity.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void DrawSprite(SpriteBatch spriteBatch)
         {
             if (hasSprite)
                 sprite.Draw(spriteBatch, position);
+        }
+
+        public void DrawEntity(SpriteBatch spriteBatch)
+        {
             if (hasEntity)
                 entity.Draw(spriteBatch, position);
         }
