@@ -44,7 +44,7 @@ namespace DozyGrove.Managers
 
         private Location DeserialiseJSON(string strJSON)
         {
-            Location location = JsonConvert.DeserializeObject<Location>(strJSON);
+            TheGrove location = JsonConvert.DeserializeObject<TheGrove>(strJSON);
             return location;
         }
 

@@ -17,6 +17,7 @@ JSONstr = strcat(JSONstr, '"height":21,');
 JSONstr = strcat(JSONstr, '"width":30,');
 JSONstr = strcat(JSONstr, '"id":0,');
 JSONstr = strcat(JSONstr, '"startingPlayerIdx":[7,15],');
+JSONstr = strcat(JSONstr, '"houseIdx":[6,15],');
 JSONstr = strcat(JSONstr, GetTileFormatted('barriers', ...
     barrierFilesToRead, prefix, fileType));
 JSONstr = strcat(JSONstr, ',');

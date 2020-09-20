@@ -65,7 +65,8 @@ namespace DozyGrove
                 { "barriers", Content.Load<Texture2D>("barriers") },
                 { "decorations", Content.Load<Texture2D>("decorations") },
                 { "player", Content.Load<Texture2D>("player") },
-                { "soil", Content.Load<Texture2D>("soil") }
+                { "soil", Content.Load<Texture2D>("soil") },
+                { "house", Content.Load<Texture2D>("house") }
             };
             sounds = new Dictionary<string, SoundEffect>()
             {

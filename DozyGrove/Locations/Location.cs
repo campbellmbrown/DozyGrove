@@ -38,40 +38,40 @@ namespace DozyGrove.Locations
         // Barrier dictionary
         protected Dictionary<string, Sprite> barrierTileAssignments = new Dictionary<string, Sprite>()
         {
-            { "dark_green_tree_1", new Barrier(new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "dark_green_tree_2", new Barrier(new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "dark_green_tree_3", new Barrier(new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "dark_green_tree_4", new Barrier(new Rectangle(3 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "light_green_tree_1", new Barrier(new Rectangle(0 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "light_green_tree_2", new Barrier(new Rectangle(1 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "light_green_tree_3", new Barrier(new Rectangle(2 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "light_green_tree_4", new Barrier(new Rectangle(3 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "yellow_tree_1", new Barrier(new Rectangle(0 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "yellow_tree_2", new Barrier(new Rectangle(1 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "yellow_tree_3", new Barrier(new Rectangle(2 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "yellow_tree_4", new Barrier(new Rectangle(3 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "red_tree_1", new Barrier(new Rectangle(0 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "red_tree_2", new Barrier(new Rectangle(1 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "red_tree_3", new Barrier(new Rectangle(2 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "red_tree_4", new Barrier(new Rectangle(3 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_tree_1", new Barrier(new Rectangle(0 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_tree_2", new Barrier(new Rectangle(1 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_tree_3", new Barrier(new Rectangle(2 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_tree_4", new Barrier(new Rectangle(3 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "rock_1", new Barrier(new Rectangle(0 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "rock_2", new Barrier(new Rectangle(1 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_rock_1", new Barrier(new Rectangle(2 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "snowy_rock_2", new Barrier(new Rectangle(3 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "fallen_log", new Barrier(new Rectangle(4 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "tree_stump_1", new Barrier(new Rectangle(4 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "tree_stump_2", new Barrier(new Rectangle(4 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, 
+            { "dark_green_tree_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "dark_green_tree_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "dark_green_tree_3", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "dark_green_tree_4", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "light_green_tree_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "light_green_tree_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "light_green_tree_3", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "light_green_tree_4", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "yellow_tree_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "yellow_tree_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "yellow_tree_3", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "yellow_tree_4", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "red_tree_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "red_tree_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "red_tree_3", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "red_tree_4", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 3 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_tree_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_tree_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_tree_3", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_tree_4", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 4 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "rock_1", new Barrier(Game1.textures["barriers"], new Rectangle(0 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "rock_2", new Barrier(Game1.textures["barriers"], new Rectangle(1 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_rock_1", new Barrier(Game1.textures["barriers"], new Rectangle(2 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "snowy_rock_2", new Barrier(Game1.textures["barriers"], new Rectangle(3 * Tile.tileSize, 5 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "fallen_log", new Barrier(Game1.textures["barriers"], new Rectangle(4 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "tree_stump_1", new Barrier(Game1.textures["barriers"], new Rectangle(4 * Tile.tileSize, 1 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "tree_stump_2", new Barrier(Game1.textures["barriers"], new Rectangle(4 * Tile.tileSize, 2 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) }, 
         };
         // Decoration dictionary
         protected Dictionary<string, Sprite> decorationTileAssignments = new Dictionary<string, Sprite>()
         {
-            { "patch", new Decoration(new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "grass_1", new Decoration(new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "grass_2", new Decoration(new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "patch", new Decoration(Game1.textures["decorations"], new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "grass_1", new Decoration(Game1.textures["decorations"], new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "grass_2", new Decoration(Game1.textures["decorations"], new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
         };
 
         public void FormGrid()
@@ -86,7 +86,7 @@ namespace DozyGrove.Locations
             }
         }
 
-        public void AddSprites()
+        public virtual void AddSprites()
         {
             foreach (var barrier in barriers) // Add barriers
                 foreach (var position in barrier.positions)

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Locations\Location.cs" />
+    <Compile Include="Locations\TheGrove.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LocationManager.cs" />
     <Compile Include="Models\Tile.cs" />
@@ -50,7 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\Barrier.cs" />
     <Compile Include="Sprites\Decoration.cs" />
-    <Compile Include="Sprites\Interactive.cs" />
+    <Compile Include="Sprites\House.cs" />
+    <Compile Include="Sprites\InteractiveBarrier.cs" />
+    <Compile Include="Sprites\InteractiveSprite.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\Soil.cs" />
     <Compile Include="Sprites\Sprite.cs" />

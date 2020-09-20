@@ -10,7 +10,11 @@ namespace DozyGrove.Sprites
 {
     public class Barrier : Sprite
     {
-        public Barrier(Rectangle textureRectangle) : base(Game1.textures["barriers"], textureRectangle)
+        public Barrier(Texture2D texture, Rectangle textureRectangle) : base(texture, textureRectangle)
+        {
+        }
+
+        public Barrier(Texture2D texture) : base(texture)
         {
         }
     }

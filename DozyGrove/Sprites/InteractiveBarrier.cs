@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DozyGrove.Sprites
 {
-    public class Decoration : Sprite
+    public class InteractiveBarrier : Barrier
     {
-        public Decoration(Texture2D texture, Rectangle textureRectangle) : base(texture, textureRectangle)
+        public InteractiveBarrier(Texture2D texture, Rectangle textureRectangle) : base(texture, textureRectangle)
         {
         }
 
-        public Decoration(Texture2D texture) : base(texture)
+        public InteractiveBarrier(Texture2D texture) : base(texture)
         {
         }
     }
