@@ -1,4 +1,4 @@
-﻿using DozyGrove.Models;
+using DozyGrove.Models;
 using DozyGrove.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -120,6 +120,7 @@ namespace DozyGrove.Locations
         public bool MovePlayer(int vertical, int horizontal)
         {
             bool moved = false;
+            bool attemptVerticalAgain = false;
             Vector2 movementDirection = Vector2.Zero;
             int newPlayerRow = playerIdx[0] + vertical;
             int newPlayerCol = playerIdx[1] + horizontal;
@@ -135,7 +136,9 @@ namespace DozyGrove.Locations
                     tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[0] = newPlayerRow;
                 }
+                else attemptVerticalAgain = true;
             }
+
             // Horizontal
             // Checking if the new player horizontal position is not out of bounds
             if ((horizontal != 0) && (newPlayerCol >= 0) && (newPlayerCol < width))
@@ -147,6 +150,18 @@ namespace DozyGrove.Locations
                     tiles[playerIdx[0], newPlayerCol].entity = tiles[playerIdx[0], playerIdx[1]].entity;
                     tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[1] = newPlayerCol;
+                }
+            }
+
+            if (attemptVerticalAgain)
+            {
+                if (!(tiles[newPlayerRow, playerIdx[1]].sprite is Barrier))
+                {
+                    moved = true;
+                    movementDirection.Y += vertical;
+                    tiles[newPlayerRow, playerIdx[1]].entity = tiles[playerIdx[0], playerIdx[1]].entity;
+                    tiles[playerIdx[0], playerIdx[1]].entity = null;
+                    playerIdx[0] = newPlayerRow;
                 }
             }
 
