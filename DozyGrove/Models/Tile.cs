@@ -12,9 +12,9 @@ namespace DozyGrove.Models
 {
     public class Tile
     {
-        public Sprite sprite;
-        public Sprite entity;
-        protected Vector2 position;
+        public Sprite sprite { get; set; }
+        public Sprite entity { get; set; }
+        protected Vector2 position { get; set; }
         protected bool hasSprite { get { return sprite != null; } }
         protected bool hasEntity { get { return entity != null; } }
         public static int tileSize = 10;

@@ -48,9 +48,12 @@ namespace DozyGrove.Managers
             return location;
         }
 
-        public void MoveUp() { locations[0].MovePlayerUp(); }
-        public void MoveDown() { locations[0].MovePlayerDown(); }
-        public void MoveLeft() { locations[0].MovePlayerLeft(); }
-        public void MoveRight() { locations[0].MovePlayerRight(); }
+        public void MovePlayer(int vertical, int horizontal) 
+        {
+            if (locations[0].MovePlayer(vertical, horizontal))
+            {
+                Game1.sounds["player_move"].Play();
+            }
+        }
     }
 }

@@ -107,8 +107,8 @@ namespace DozyGrove.Locations
 
         public virtual void Update(GameTime gameTime)
         {
-            //foreach (var tile in tiles)
-            //    tile.Update(gameTime);
+            foreach (var tile in tiles)
+                tile.Update(gameTime);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -117,30 +117,36 @@ namespace DozyGrove.Locations
                 tile.Draw(spriteBatch);
         }
 
-        public virtual void MovePlayerUp() { MovePlayer(-1, 0); }
-        public virtual void MovePlayerDown() { MovePlayer(1, 0); }
-        public virtual void MovePlayerLeft() { MovePlayer(0, -1); }
-        public virtual void MovePlayerRight() { MovePlayer(0, 1); }
-
-        public void MovePlayer(int vertical, int horizontal)
+        public bool MovePlayer(int vertical, int horizontal)
         {
+            bool moved = false;
             int newPlayerRow = playerIdx[0] + vertical;
             int newPlayerCol = playerIdx[1] + horizontal;
-            // If the new player position is not out of bounds
-            if ((newPlayerRow >= 0) && (newPlayerRow < height) && (newPlayerCol >= 0) && (newPlayerCol < width))
+            // Vertical
+            // Checking if the new player vertical position is not out of bounds
+            if ((vertical != 0) && (newPlayerRow >= 0) && (newPlayerRow < height))
             {
-                if (!(tiles[newPlayerRow, newPlayerCol].sprite is Barrier)) {
-                    tiles[newPlayerRow, newPlayerCol].entity = tiles[playerIdx[0], playerIdx[1]].entity;
+                if (!(tiles[newPlayerRow, playerIdx[1]].sprite is Barrier))
+                {
+                    moved = true;
+                    tiles[newPlayerRow, playerIdx[1]].entity = tiles[playerIdx[0], playerIdx[1]].entity;
                     tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[0] = newPlayerRow;
+                }
+            }
+            // Horizontal
+            // Checking if the new player horizontal position is not out of bounds
+            if ((horizontal != 0) && (newPlayerCol >= 0) && (newPlayerCol < width))
+            {
+                if (!(tiles[playerIdx[0], newPlayerCol].sprite is Barrier))
+                {
+                    moved = true;
+                    tiles[playerIdx[0], newPlayerCol].entity = tiles[playerIdx[0], playerIdx[1]].entity;
+                    tiles[playerIdx[0], playerIdx[1]].entity = null;
                     playerIdx[1] = newPlayerCol;
                 }
             }
-        }
-
-        public static int[] Add2Vectors(int[] a, int[] b)
-        {
-            return (a.Zip(b, (x, y) => x + y)).ToArray();
+            return moved;
         }
     }
 }

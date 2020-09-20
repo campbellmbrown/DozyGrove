@@ -10,17 +10,21 @@ namespace DozyGrove.Managers
 {
     public class InputManager
     {
-        private bool holdingUp { get; set; }
-        private bool holdingDown { get; set; }
-        private bool holdingLeft { get; set; }
-        private bool holdingRight { get; set; }
+        private float movementDelay { get; set; }
+        private float currentMovementDelay { get; set; }
+        private bool holdingDownUp { get; set; }
+        private bool holdingDownDown { get; set; }
+        private bool holdingDownLeft { get; set; }
+        private bool holdingDownRight { get; set; }
 
         public InputManager()
         {
-            holdingUp = false;
-            holdingDown = false;
-            holdingLeft = false;
-            holdingRight = false;
+            movementDelay = 0.2f;
+            currentMovementDelay = 0f;
+            holdingDownUp = false;
+            holdingDownDown = false;
+            holdingDownLeft = false;
+            holdingDownRight = false;
         }
 
         public void Update(GameTime gameTime)
@@ -33,42 +37,75 @@ namespace DozyGrove.Managers
 
         private void CheckSingleKeyPress(KeyboardState keyboardState)
         {
-            if (keyboardState.IsKeyDown(Keys.W))
-            {
-                if (!holdingUp)
-                    Game1.locationManager.MoveUp();
-                holdingUp = true;
-            }
-            else holdingUp = false;
+        //    if (keyboardState.IsKeyDown(Keys.W))
+        //    {
+        //        if (!holdingDownUp)
+        //        {
+        //            Game1.sounds["player_move"].Play();
+        //            Game1.locationManager.MoveUp();
+        //            ResetMovementDelays();
+        //        }
+        //        holdingDownUp = true;
+        //    }
+        //    else holdingDownUp = false;
 
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                if (!holdingDown)
-                    Game1.locationManager.MoveDown();
-                holdingDown = true;
-            }
-            else holdingDown = false;
+        //    if (keyboardState.IsKeyDown(Keys.S))
+        //    {
+        //        if (!holdingDownDown)
+        //        {
+        //            Game1.locationManager.MoveDown();
+        //            ResetMovementDelays();
+        //        }
+        //        holdingDownDown = true;
+        //    }
+        //    else holdingDownDown = false;
 
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                if (!holdingLeft)
-                    Game1.locationManager.MoveLeft();
-                holdingLeft = true;
-            }
-            else holdingLeft = false;
+        //    if (keyboardState.IsKeyDown(Keys.A))
+        //    {
+        //        if (!holdingDownLeft)
+        //        {
+        //            Game1.locationManager.MoveLeft();
+        //            ResetMovementDelays();
+        //        }
+        //        holdingDownLeft = true;
+        //    }
+        //    else holdingDownLeft = false;
 
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                if (!holdingRight)
-                    Game1.locationManager.MoveRight();
-                holdingRight = true;
-            }
-            else holdingRight = false;
+        //    if (keyboardState.IsKeyDown(Keys.D))
+        //    {
+        //        if (!holdingDownRight)
+        //        {
+        //            Game1.locationManager.MoveRight();
+        //            ResetMovementDelays();
+        //        }
+        //        holdingDownRight = true;
+        //    }
+        //    else holdingDownRight = false;
         }
 
-        public void CheckHeldKeyPress(KeyboardState keyboardState, float t)
+        private void CheckHeldKeyPress(KeyboardState keyboardState, float t)
         {
+            if (currentMovementDelay > 0) currentMovementDelay -= t;
 
+            int vertical = 0;
+            int horizontal = 0;
+            if (currentMovementDelay <= 0) {
+                if (keyboardState.IsKeyDown(Keys.W)) vertical -= 1;
+                if (keyboardState.IsKeyDown(Keys.S)) vertical += 1;
+                if (keyboardState.IsKeyDown(Keys.A)) horizontal -= 1;
+                if (keyboardState.IsKeyDown(Keys.D)) horizontal += 1;
+
+                if ((vertical != 0) || (horizontal != 0))
+                {
+                    ResetMovementDelays();
+                    Game1.locationManager.MovePlayer(vertical, horizontal);
+                }
+            }
+        }
+
+        private void ResetMovementDelays(float multiplier = 1f)
+        {
+            currentMovementDelay = multiplier * movementDelay;
         }
     }
 }

@@ -11,8 +11,8 @@ namespace DozyGrove.Sprites
     public class Sprite
     {
         // public Animation animation;
-        public Texture2D texture;
-        public Rectangle textureRectangle;
+        public Texture2D texture { get; set; }
+        public Rectangle textureRectangle { get; set; }
         public bool hasTextureRectangle { get; set; }
 
         public Sprite(Texture2D texture, Rectangle textureRectangle)

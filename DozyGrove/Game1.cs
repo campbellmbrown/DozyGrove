@@ -1,5 +1,6 @@
 ﻿using DozyGrove.Managers;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -10,13 +11,16 @@ namespace DozyGrove
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private Color backgroundColor;
-        public static Dictionary<string, Texture2D> textures;
-        public static Camera2D camera;
-        public static LocationManager locationManager;
-        public static InputManager inputManager;
+        private GraphicsDeviceManager graphics { get; set; }
+        private SpriteBatch spriteBatch { get; set; }
+        private Color backgroundColor { get; set; }
+
+        public static Dictionary<string, Texture2D> textures { get; set; }
+        public static Dictionary<string, SoundEffect> sounds { get; set; }
+
+        public static Camera2D camera { get; set; }
+        public static LocationManager locationManager { get; set; }
+        public static InputManager inputManager { get; set; }
 
         public static Vector2 screenSize { get { return new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height); } }
         public Vector2 windowSize { get { return new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); } }
@@ -30,6 +34,7 @@ namespace DozyGrove
                 return Vector2.Transform(new Vector2(_mousePos.X, _mousePos.Y), camera.GetInverseViewMatrix()); 
             } 
         }
+        public static Random r;
 
         public Game1()
         {
@@ -38,6 +43,7 @@ namespace DozyGrove
             graphics.PreferredBackBufferWidth = (int)screenSize.X;
             graphics.PreferredBackBufferHeight = (int)screenSize.Y;
             graphics.IsFullScreen = false;
+            r = new Random();
         }
 
         protected override void Initialize()
@@ -59,6 +65,10 @@ namespace DozyGrove
                 { "barriers", Content.Load<Texture2D>("barriers") },
                 { "decorations", Content.Load<Texture2D>("decorations") },
                 { "player", Content.Load<Texture2D>("player") },
+            };
+            sounds = new Dictionary<string, SoundEffect>()
+            {
+                { "player_move", Content.Load<SoundEffect>("Sounds/player_move") },
             };
 
             locationManager = new LocationManager();
