@@ -22,10 +22,12 @@ namespace DozyGrove.Locations
         public int[] playerIdx { get; set; }
         public List<BarrierModel> barriers { get; set; }
         public List<DecorationModel> decorations { get; set; }
+        public List<SoilModel> soils { get; set; }
         public Tile[,] tiles { get; set; }
 
         public class BarrierModel : JSONSpriteModel { }
         public class DecorationModel : JSONSpriteModel { }
+        public class SoilModel : JSONSpriteModel { }
 
         public class JSONSpriteModel
         {
@@ -68,8 +70,8 @@ namespace DozyGrove.Locations
         protected Dictionary<string, Sprite> decorationTileAssignments = new Dictionary<string, Sprite>()
         {
             { "patch", new Decoration(new Rectangle(0 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "small_grass_1", new Decoration(new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
-            { "small_grass_2", new Decoration(new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "grass_1", new Decoration(new Rectangle(1 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
+            { "grass_2", new Decoration(new Rectangle(2 * Tile.tileSize, 0 * Tile.tileSize, Tile.tileSize, Tile.tileSize)) },
         };
 
         public void FormGrid()
@@ -87,20 +89,14 @@ namespace DozyGrove.Locations
         public void AddSprites()
         {
             foreach (var barrier in barriers) // Add barriers
-            {
                 foreach (var position in barrier.positions)
-                {
                     tiles[position[0], position[1]].sprite = barrierTileAssignments[barrier.type];
-                }
-            }
-            // Add decorations
-            foreach (var decoration in decorations)
-            {
+            foreach (var decoration in decorations) // Add decorations
                 foreach (var position in decoration.positions)
-                {
                     tiles[position[0], position[1]].sprite = decorationTileAssignments[decoration.type];
-                }
-            }
+            foreach (var soil in soils) // Add soils
+                foreach (var position in soil.positions)
+                    tiles[position[0], position[1]].sprite = new Soil();
             tiles[startingPlayerIdx[0], startingPlayerIdx[1]].entity = new Player();
             playerIdx = startingPlayerIdx;
         }
