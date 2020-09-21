@@ -67,7 +67,8 @@ namespace DozyGrove
                 { "barriers", Content.Load<Texture2D>("barriers") },
                 { "decorations", Content.Load<Texture2D>("decorations") },
                 { "soil", Content.Load<Texture2D>("soil") },
-                { "house", Content.Load<Texture2D>("house") }
+                { "house", Content.Load<Texture2D>("house") },
+                { "plants", Content.Load<Texture2D>("plants") }
             };
             animations = new Dictionary<string, Animation>()
             {
