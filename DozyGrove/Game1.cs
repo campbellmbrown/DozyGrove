@@ -1,4 +1,5 @@
 ﻿using DozyGrove.Managers;
+using DozyGrove.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +18,7 @@ namespace DozyGrove
 
         public static Dictionary<string, Texture2D> textures { get; set; }
         public static Dictionary<string, SoundEffect> sounds { get; set; }
+        public static Dictionary<string, Animation> animations { get; set; }
 
         public static Camera2D camera { get; set; }
         public static LocationManager locationManager { get; set; }
@@ -64,9 +66,12 @@ namespace DozyGrove
             {
                 { "barriers", Content.Load<Texture2D>("barriers") },
                 { "decorations", Content.Load<Texture2D>("decorations") },
-                { "player", Content.Load<Texture2D>("player") },
                 { "soil", Content.Load<Texture2D>("soil") },
                 { "house", Content.Load<Texture2D>("house") }
+            };
+            animations = new Dictionary<string, Animation>()
+            {
+                { "player_left", new Animation(Content.Load<Texture2D>("player"), 2, 1f) }
             };
             sounds = new Dictionary<string, SoundEffect>()
             {

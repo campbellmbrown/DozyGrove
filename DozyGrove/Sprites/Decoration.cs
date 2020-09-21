@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DozyGrove.Models;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace DozyGrove.Sprites
         }
 
         public Decoration(Texture2D texture) : base(texture)
+        {
+        }
+
+        public Decoration(Animation animation) : base(animation)
         {
         }
     }

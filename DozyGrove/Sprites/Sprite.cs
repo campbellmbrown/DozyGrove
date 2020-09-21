@@ -1,4 +1,5 @@
-﻿using DozyGrove.Models;
+﻿using DozyGrove.Managers;
+using DozyGrove.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,9 +15,13 @@ namespace DozyGrove.Sprites
         // public Animation animation;
         public Texture2D texture { get; set; }
         public Rectangle textureRectangle { get; set; }
-        public bool hasTextureRectangle { get; set; }
+        public Animation animation { get; set; }
+        public AnimationManager animationManager { get; set; }
 
+        public bool hasTextureRectangle = false;
+        public bool hasAnimation = false;
         protected bool transitioning = false;
+        
         protected Vector2 transitionDirection { get; set; }
         protected float transitionDuration { get; set; }
         protected float currentTransitionDuration = 0f;
@@ -32,7 +37,13 @@ namespace DozyGrove.Sprites
         public Sprite(Texture2D texture)
         {
             this.texture = texture;
-            hasTextureRectangle = false;
+        }
+
+        public Sprite(Animation animation)
+        {
+            this.animation = animation;
+            animationManager = new AnimationManager(animation);
+            hasAnimation = true;
         }
 
         public void Update(GameTime gameTime)
@@ -54,14 +65,18 @@ namespace DozyGrove.Sprites
                     offset = -transitionDirection * Tile.tileSize * (transitionDuration - currentTransitionDuration) / transitionDuration;
                 }
             }
+            if (hasAnimation)
+                animationManager.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            if (!hasTextureRectangle)
-                spriteBatch.Draw(texture, position + offset, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            else
+            if (hasAnimation)
+                animationManager.Draw(spriteBatch, position);
+            else if (hasTextureRectangle)
                 spriteBatch.Draw(texture, position, textureRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            else
+                spriteBatch.Draw(texture, position + offset, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
         public void SmoothTransition(Vector2 direction, float duration)

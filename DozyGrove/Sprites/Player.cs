@@ -10,7 +10,7 @@ namespace DozyGrove.Sprites
 {
     public class Player : Sprite
     {
-        public Player() : base(Game1.textures["player"])
+        public Player() : base(Game1.animations["player_left"])
         {
         }
     }

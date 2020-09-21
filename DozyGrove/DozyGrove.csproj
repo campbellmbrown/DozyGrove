@@ -44,8 +44,10 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Locations\TheGrove.cs" />
+    <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LocationManager.cs" />
+    <Compile Include="Models\Animation.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
