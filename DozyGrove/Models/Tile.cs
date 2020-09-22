@@ -49,5 +49,13 @@ namespace DozyGrove.Models
             if (hasEntity)
                 entity.SmoothTransition(direction, duration);
         }
+
+        public void DailyUpdate()
+        {
+            if (hasSprite)
+                sprite.DailyUpdate();
+            if (hasEntity)
+                entity.DailyUpdate();
+        }
     }
 }

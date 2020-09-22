@@ -27,8 +27,19 @@ namespace DozyGrove.Managers
             CheckHeldKeyPress(keyboardState, t);
         }
 
+        // Temp: TODO - remove
+        bool holdingDownDailyUpdate = false;
         private void CheckSingleKeyPress(KeyboardState keyboardState)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                if (!holdingDownDailyUpdate)
+                {
+                    Game1.locationManager.DailyUpdate();
+                }
+                holdingDownDailyUpdate = true;
+            }
+            else holdingDownDailyUpdate = false;
         }
 
         private void CheckHeldKeyPress(KeyboardState keyboardState, float t)

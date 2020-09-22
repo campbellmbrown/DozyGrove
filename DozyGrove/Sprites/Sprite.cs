@@ -46,7 +46,7 @@ namespace DozyGrove.Sprites
             hasAnimation = true;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (transitioning)
@@ -69,12 +69,12 @@ namespace DozyGrove.Sprites
                 animationManager.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             if (hasAnimation)
-                animationManager.Draw(spriteBatch, position);
+                animationManager.Draw(spriteBatch, position + offset);
             else if (hasTextureRectangle)
-                spriteBatch.Draw(texture, position, textureRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, position + offset, textureRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             else
                 spriteBatch.Draw(texture, position + offset, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
@@ -84,6 +84,11 @@ namespace DozyGrove.Sprites
             transitioning = true;
             transitionDirection = direction;
             transitionDuration = duration;
+        }
+
+        public virtual void DailyUpdate()
+        {
+
         }
     }
 }

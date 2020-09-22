@@ -168,5 +168,11 @@ namespace DozyGrove.Locations
             
             return moved;
         }
+
+        public void DailyUpdate()
+        {
+            foreach (var tile in tiles)
+                tile.DailyUpdate();
+        }
     }
 }

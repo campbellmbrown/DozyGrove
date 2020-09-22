@@ -55,5 +55,10 @@ namespace DozyGrove.Managers
             else
                 Game1.sounds["player_block"].Play();
         }
+
+        public void DailyUpdate()
+        {
+            locations[0].DailyUpdate();
+        }
     }
 }
