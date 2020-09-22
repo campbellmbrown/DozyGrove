@@ -48,6 +48,7 @@
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LocationManager.cs" />
     <Compile Include="Models\Animation.cs" />
+    <Compile Include="Models\Plant.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
