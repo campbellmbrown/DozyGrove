@@ -14,8 +14,7 @@ namespace DozyGrove.Locations
 {
     public class Location
     {
-        public string name { get; set; }
-        public int id { get; set; }
+        public string locationName { get; set; }
         public int height { get; set; }
         public int width { get; set; }
         public int[] startingPlayerIdx { get; set; }
