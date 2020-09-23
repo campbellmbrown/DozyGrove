@@ -17,14 +17,11 @@ JSONstr = strcat(JSONstr, '"height":21,');
 JSONstr = strcat(JSONstr, '"width":30,');
 JSONstr = strcat(JSONstr, '"startingPlayerIdx":[7,15],');
 JSONstr = strcat(JSONstr, '"houseIdx":[6,15],');
-JSONstr = strcat(JSONstr, GetTileFormatted('barriers', ...
-    barrierFilesToRead, prefix, fileType));
+JSONstr = strcat(JSONstr, GetTileFormatted('barriers', barrierFilesToRead, prefix, fileType));
 JSONstr = strcat(JSONstr, ',');
-JSONstr = strcat(JSONstr, GetTileFormatted('decorations', ...
-    decorationFilesToRead, prefix, fileType));
+JSONstr = strcat(JSONstr, GetTileFormatted('decorations', decorationFilesToRead, prefix, fileType));
 JSONstr = strcat(JSONstr, ',');
-JSONstr = strcat(JSONstr, GetTileFormatted('soils', ...
-    ["soil"], prefix, fileType));
+JSONstr = strcat(JSONstr, GetTileFormatted('soils', "soil", prefix, fileType));
 JSONstr = strcat(JSONstr, '}');
 
 disp(JSONstr);
