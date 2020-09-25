@@ -68,5 +68,15 @@ namespace DozyGrove.Managers
         {
             currentLocation.DailyUpdate();
         }
+
+        public void CheckHover()
+        {
+            currentLocation.CheckHover();
+        }
+
+        public void CheckInteract()
+        {
+            currentLocation.CheckInteract();
+        }
     }
 }

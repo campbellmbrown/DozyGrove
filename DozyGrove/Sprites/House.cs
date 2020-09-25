@@ -13,5 +13,12 @@ namespace DozyGrove.Sprites
         public House(Texture2D texture) : base(texture)
         {
         }
+
+        public override void InteractAction()
+        {
+            if (currentlyInteractive)
+                Game1.locationManager.DailyUpdate();
+            base.InteractAction();
+        }
     }
 }

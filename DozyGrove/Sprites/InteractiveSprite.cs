@@ -11,6 +11,8 @@ namespace DozyGrove.Sprites
 {
     public class InteractiveSprite : Sprite
     {
+        public bool currentlyInteractive = false;
+
         public InteractiveSprite(Texture2D texture) : base(texture)
         {
         }
@@ -20,6 +22,10 @@ namespace DozyGrove.Sprites
         }
 
         public InteractiveSprite(Animation animation) : base(animation)
+        {
+        }
+
+        public virtual void InteractAction()
         {
         }
     }

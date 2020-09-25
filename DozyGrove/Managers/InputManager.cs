@@ -12,6 +12,7 @@ namespace DozyGrove.Managers
     {
         private float movementDelay { get; set; }
         private float currentMovementDelay { get; set; }
+        private bool holdingDownInteract = false;
 
         public InputManager()
         {
@@ -25,21 +26,30 @@ namespace DozyGrove.Managers
             KeyboardState keyboardState = Keyboard.GetState();
             CheckSingleKeyPress(keyboardState);
             CheckHeldKeyPress(keyboardState, t);
+            CheckHover();
         }
 
-        // Temp: TODO - remove
-        bool holdingDownDailyUpdate = false;
+        private void CheckHover()
+        {
+            Game1.locationManager.CheckHover();
+        }
+
+        private void CheckInteract()
+        {
+            Game1.locationManager.CheckInteract();
+        }
+
         private void CheckSingleKeyPress(KeyboardState keyboardState)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                if (!holdingDownDailyUpdate)
+                if (!holdingDownInteract)
                 {
-                    Game1.locationManager.DailyUpdate();
+                    Game1.locationManager.CheckInteract();
                 }
-                holdingDownDailyUpdate = true;
+                holdingDownInteract = true;
             }
-            else holdingDownDailyUpdate = false;
+            else holdingDownInteract = false;
         }
 
         private void CheckHeldKeyPress(KeyboardState keyboardState, float t)
@@ -49,10 +59,10 @@ namespace DozyGrove.Managers
             int vertical = 0;
             int horizontal = 0;
             if (currentMovementDelay <= 0) {
-                if (keyboardState.IsKeyDown(Keys.W)) vertical -= 1;
-                if (keyboardState.IsKeyDown(Keys.S)) vertical += 1;
-                if (keyboardState.IsKeyDown(Keys.A)) horizontal -= 1;
-                if (keyboardState.IsKeyDown(Keys.D)) horizontal += 1;
+                if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up)) vertical -= 1;
+                if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down)) vertical += 1;
+                if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left)) horizontal -= 1;
+                if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right)) horizontal += 1;
 
                 if ((vertical != 0) || (horizontal != 0))
                 {

@@ -13,7 +13,7 @@ namespace DozyGrove.Locations
 
         public override void AddSprites()
         {
-            tiles[houseIdx[0], houseIdx[1]].sprite = new House(Game1.textures["house"]);
+            tiles[houseIdx[0], houseIdx[1]].sprite = new House(Game1.textures["house"]) { currentlyInteractive = true };
             base.AddSprites();
         }
     }

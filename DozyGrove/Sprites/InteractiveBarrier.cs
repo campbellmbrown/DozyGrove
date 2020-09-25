@@ -11,6 +11,8 @@ namespace DozyGrove.Sprites
 {
     public class InteractiveBarrier : Barrier
     {
+        public bool currentlyInteractive = false;
+
         public InteractiveBarrier(Texture2D texture, Rectangle textureRectangle) : base(texture, textureRectangle)
         {
         }
@@ -20,6 +22,10 @@ namespace DozyGrove.Sprites
         }
 
         public InteractiveBarrier(Animation animation) : base(animation)
+        {
+        }
+
+        public virtual void InteractAction()
         {
         }
     }

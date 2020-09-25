@@ -23,7 +23,7 @@ namespace DozyGrove.Locations
         public List<DecorationModel> decorations { get; set; }
         public List<SoilModel> soils { get; set; }
         public Tile[,] tiles { get; set; }
-
+        protected int selectionDistance = 1;
         public class BarrierModel : JSONSpriteModel { }
         public class DecorationModel : JSONSpriteModel { }
         public class SoilModel : JSONSpriteModel { }
@@ -95,7 +95,9 @@ namespace DozyGrove.Locations
                     tiles[position[0], position[1]].sprite = decorationTileAssignments[decoration.type];
             foreach (var soil in soils) // Add soils
                 foreach (var position in soil.positions)
-                    tiles[position[0], position[1]].sprite = new Soil();
+                {
+                    tiles[position[0], position[1]].sprite = new Soil() { currentlyInteractive = true };
+                }
             tiles[startingPlayerIdx[0], startingPlayerIdx[1]].entity = new Player();
             playerIdx = startingPlayerIdx;
         }
@@ -109,9 +111,11 @@ namespace DozyGrove.Locations
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             foreach (var tile in tiles)
-                tile.DrawSprite(spriteBatch);
+                tile.DrawBottomLayer(spriteBatch);
             foreach (var tile in tiles)
-                tile.DrawEntity(spriteBatch);
+                tile.DrawMiddleLayer(spriteBatch);
+            foreach (var tile in tiles)
+                tile.DrawTopLayer(spriteBatch);
         }
 
         public bool MovePlayer(int vertical, int horizontal)
@@ -172,6 +176,43 @@ namespace DozyGrove.Locations
         {
             foreach (var tile in tiles)
                 tile.DailyUpdate();
+        }
+
+        public void CheckHover()
+        {
+            // Loop through each of the tiles
+            for (int i = 0; i < tiles.GetLength(0); ++i) // Row
+            {
+                for (int j = 0; j < tiles.GetLength(1); ++j) // Column
+                {
+                    tiles[i, j].highlight = false;
+                    // If the mouse is current over a tile that is in proximity of the player, highlight it
+                    if (tiles[i, j].hoverRectangle.Contains(Game1.mousePosition) 
+                        && Math.Abs(i - playerIdx[0]) <= selectionDistance
+                        && Math.Abs(j - playerIdx[1]) <= selectionDistance)
+                    {
+                        tiles[i, j].highlight = true;
+                    }
+                }
+            }
+        }
+
+        public void CheckInteract()
+        {
+            foreach (var tile in tiles)
+            {
+                if (tile.hasSprite && tile.highlight && tile.sprite is InteractiveBarrier)
+                {
+                    Console.WriteLine();
+                    InteractiveBarrier sprite = (InteractiveBarrier)tile.sprite;
+                    sprite.InteractAction();
+                }
+                else if (tile.hasSprite && tile.highlight && tile.sprite is InteractiveSprite)
+                {
+                    InteractiveSprite sprite = (InteractiveSprite)tile.sprite;
+                    sprite.InteractAction();
+                }
+            }
         }
     }
 }
